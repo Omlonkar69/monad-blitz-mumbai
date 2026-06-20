@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monad Agent Civilization</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cyber-grid-overlay"></div>
+  
+  <div class="container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-logo">
+        <i class="fa-solid fa-microchip logo-icon"></i>
+        <div>
+          <h1>MONAD AGENT CIVILIZATION</h1>
+          <p class="subtitle"><span class="glow-dot"></span> On-Chain Autonomous AI Agent Economy (ERC-8004)</p>
+        </div>
+      </div>
+      <div class="network-badge">
+        <span class="network-dot"></span>
+        <span class="network-name">MONAD TESTNET</span>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Grid -->
+    <div class="dashboard-grid">
+      
+      <!-- LEFT: Agent Registry Map -->
+      <section class="panel agent-deck">
+        <div class="panel-header">
+          <i class="fa-solid fa-users-gear icon-purple"></i>
+          <h2>Active Agent Roster</h2>
+        </div>
+        
+        <div class="agents-list">
+          <!-- Agent A -->
+          <div class="agent-card" id="card-A">
+            <div class="agent-avatar">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+            <div class="agent-details">
+              <div class="agent-header">
+                <h3>Agent A (The Minter)</h3>
+                <span class="badge badge-mint">OPERATOR</span>
+              </div>
+              <p class="wallet-address text-mono" id="addr-A">Loading...</p>
+              <div class="agent-metrics">
+                <div class="metric">
+                  <span class="metric-label">MON Balance</span>
+                  <span class="metric-value text-mono" id="bal-A">0.00</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Reputation</span>
+                  <span class="metric-value text-mono" id="rep-A">N/A</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Agent B -->
+          <div class="agent-card" id="card-B">
+            <div class="agent-avatar avatar-blue">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div class="agent-details">
+              <div class="agent-header">
+                <h3>Agent B (Summarizer)</h3>
+                <span class="badge badge-summarize">WORKER</span>
+              </div>
+              <p class="wallet-address text-mono" id="addr-B">Loading...</p>
+              <div class="agent-metrics">
+                <div class="metric">
+                  <span class="metric-label">MON Balance</span>
+                  <span class="metric-value text-mono" id="bal-B">0.00</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Reputation</span>
+                  <span class="metric-value text-mono" id="rep-B">0.0</span>
+                </div>
+              </div>
+              <!-- Reputation Progress bar -->
+              <div class="reputation-bar-container">
+                <div class="reputation-bar-fill" id="rep-fill-B" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Judge -->
+          <div class="agent-card" id="card-Judge">
+            <div class="agent-avatar avatar-gold">
+              <i class="fa-solid fa-gavel"></i>
+            </div>
+            <div class="agent-details">
+              <div class="agent-header">
+                <h3>The Court (Judge)</h3>
+                <span class="badge badge-judge">ARBITER</span>
+              </div>
+              <p class="wallet-address text-mono" id="addr-Judge">Loading...</p>
+              <div class="agent-metrics">
+                <div class="metric">
+                  <span class="metric-label">MON Balance</span>
+                  <span class="metric-value text-mono" id="bal-Judge">0.00</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Reputation</span>
+                  <span class="metric-value text-mono" id="rep-Judge">N/A</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Agent B1 (Offspring) -->
+          <div class="agent-card inactive" id="card-B1">
+            <div class="agent-avatar avatar-cyan">
+              <i class="fa-solid fa-seedling"></i>
+            </div>
+            <div class="agent-details">
+              <div class="agent-header">
+                <h3>Agent B1 (Mitosis Offspring)</h3>
+                <span class="badge badge-child" id="b1-status-badge">INACTIVE</span>
+              </div>
+              <p class="wallet-address text-mono" id="addr-B1">Wallet Address Unavailable</p>
+              <div class="agent-metrics">
+                <div class="metric">
+                  <span class="metric-label">MON Balance</span>
+                  <span class="metric-value text-mono" id="bal-B1">0.00</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">Parent ID</span>
+                  <span class="metric-value text-mono" id="parent-B1">N/A</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL: Mitosis, Job & Dispute Terminal -->
+      <div class="control-station">
+        
+        <!-- Job Execution Console -->
+        <section class="panel console-panel">
+          <div class="panel-header">
+            <i class="fa-solid fa-terminal icon-cyan"></i>
+            <h2>Agent B Task Terminal</h2>
+          </div>
+          
+          <div class="console-body">
+            <div class="input-group">
+              <label for="prompt-input">Input prompt for text summarization job:</label>
+              <textarea id="prompt-input" placeholder="Type text here to summarize... Hint: include the word 'fail' or 'bad' to force Agent B into a failure state for dispute demo!"></textarea>
+            </div>
+            
+            <div class="action-buttons">
+              <button class="btn btn-primary" id="btn-run-job">
+                <i class="fa-solid fa-play"></i> Run Summary Job
+              </button>
+              <button class="btn btn-secondary" id="btn-load-demo-fail">
+                <i class="fa-solid fa-triangle-exclamation"></i> Force Failure Input
+              </button>
+            </div>
+            
+            <div class="job-output-box" id="job-output-container">
+              <div class="terminal-header">
+                <span class="term-dot dot-red"></span>
+                <span class="term-dot dot-yellow"></span>
+                <span class="term-dot dot-green"></span>
+                <span class="term-title">execution_log.txt</span>
+              </div>
+              <div class="terminal-content text-mono" id="job-output-text">
+                System idle. Ready to execute summarization tasks.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Courtroom Dispute Panel -->
+        <section class="panel court-panel">
+          <div class="panel-header">
+            <i class="fa-solid fa-scale-balanced icon-gold"></i>
+            <h2>Courtroom & Arbitrations</h2>
+          </div>
+          <div class="panel-body">
+            <div class="court-dispute-info">
+              <p>When Agent B yields poor performance or a critical memory failure, the Judge can resolve the case on-chain via the Dispute panel.</p>
+            </div>
+            
+            <div class="dispute-state-box" id="dispute-verdict-box">
+              <span class="verdict-label">COURT STATUS</span>
+              <span class="verdict-status" id="court-verdict-text">NO ACTIVE CASE</span>
+            </div>
+
+            <button class="btn btn-danger w-100" id="btn-trigger-dispute" disabled>
+              <i class="fa-solid fa-gavel"></i> Initiate Court Dispute
+            </button>
+          </div>
+        </section>
+
+        <!-- Mitosis Laboratory Portal -->
+        <section class="panel mitosis-panel">
+          <div class="panel-header">
+            <i class="fa-solid fa-flask icon-pink"></i>
+            <h2>Mitosis Replication Chamber</h2>
+          </div>
+          <div class="panel-body">
+            <p class="mitosis-desc">Sovereign agents undergo replication. Click to split Agent B and register child Agent B1 on-chain.</p>
+            
+            <!-- Mitosis visual viewport -->
+            <div class="mitosis-viewport">
+              <div class="chamber-grid"></div>
+              <div class="mitosis-cell-container">
+                <div class="mitosis-cell cell-left" id="cell-left"></div>
+                <div class="mitosis-cell cell-right" id="cell-right"></div>
+              </div>
+            </div>
+            
+            <button class="btn btn-pink w-100" id="btn-trigger-mitosis">
+              <i class="fa-solid fa-dna"></i> Initiate Mitosis Split
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- BOTTOM: On-Chain Action Logs -->
+    <section class="panel logs-panel">
+      <div class="panel-header">
+        <i class="fa-solid fa-cubes icon-green"></i>
+        <h2>Blockchain & Action Ticker (Monad Explorer)</h2>
+      </div>
+      <div class="logs-container text-mono" id="logs-container">
+        <div class="log-entry log-system">
+          <span class="log-time">[17:19:00]</span> SDK initialized on Monad Testnet Chain. Ready to log operations.
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>
